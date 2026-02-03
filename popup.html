@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EDI Analyzer</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__header">
+        <div class="title">EDI (EDIFACT) Analyzer</div>
+        <div class="subtitle">Open local files or SharePoint links</div>
+      </header>
+
+      <section class="panel">
+        <div class="panel__title">Analyze</div>
+        <label class="field">
+          <span class="field__label">Local file</span>
+          <input id="analyzeFile" type="file" accept=".edi,.txt,*/*" />
+        </label>
+        <label class="field">
+          <span class="field__label">SharePoint URL</span>
+          <input id="analyzeUrl" type="url" placeholder="https://.../file.edi" />
+        </label>
+        <button id="analyzeBtn" class="btn btn--primary">Open Analyzer</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">Compare</div>
+        <div class="grid">
+          <label class="field">
+            <span class="field__label">Left file</span>
+            <input id="compareLeftFile" type="file" accept=".edi,.txt,*/*" />
+          </label>
+          <label class="field">
+            <span class="field__label">Left URL</span>
+            <input id="compareLeftUrl" type="url" placeholder="https://.../left.edi" />
+          </label>
+          <label class="field">
+            <span class="field__label">Right file</span>
+            <input id="compareRightFile" type="file" accept=".edi,.txt,*/*" />
+          </label>
+          <label class="field">
+            <span class="field__label">Right URL</span>
+            <input id="compareRightUrl" type="url" placeholder="https://.../right.edi" />
+          </label>
+        </div>
+        <button id="compareBtn" class="btn btn--primary">Open Comparison</button>
+      </section>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

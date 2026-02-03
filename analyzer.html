@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EDI Analyzer</title>
+    <link rel="stylesheet" href="analyzer.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand__title">EDI (EDIFACT) Analyzer</div>
+          <div class="brand__subtitle" id="sessionInfo">Ready</div>
+        </div>
+        <nav class="tabs">
+          <button class="tab-btn is-active" data-tab="analyze">Analyze</button>
+          <button class="tab-btn" data-tab="details">Details</button>
+          <button class="tab-btn" data-tab="compare">Compare</button>
+        </nav>
+      </header>
+
+      <main class="content">
+        <section id="tab-analyze" class="tab-panel is-active">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Message Overview</div>
+              <div class="panel-subtitle" id="analyzeSource">No message loaded.</div>
+            </div>
+          </div>
+
+          <div class="grid-two">
+            <div class="card">
+              <div class="card-title">Summary</div>
+              <div class="summary-grid">
+                <div>
+                  <div class="label">Sender</div>
+                  <div class="value" id="summarySender">-</div>
+                </div>
+                <div>
+                  <div class="label">Receiver</div>
+                  <div class="value" id="summaryReceiver">-</div>
+                </div>
+                <div>
+                  <div class="label">Message Type</div>
+                  <div class="value" id="summaryType">-</div>
+                </div>
+                <div>
+                  <div class="label">Version</div>
+                  <div class="value" id="summaryVersion">-</div>
+                </div>
+                <div>
+                  <div class="label">Date</div>
+                  <div class="value" id="summaryDate">-</div>
+                </div>
+                <div>
+                  <div class="label">Time</div>
+                  <div class="value" id="summaryTime">-</div>
+                </div>
+                <div>
+                  <div class="label">Segments</div>
+                  <div class="value" id="summarySegments">-</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Issues</div>
+              <div class="table-wrap">
+                <table class="table" id="issuesTable">
+                  <thead>
+                    <tr>
+                      <th>Severity</th>
+                      <th>Code</th>
+                      <th>Message</th>
+                      <th>Segment</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Raw Message Preview</div>
+            <textarea id="rawPreview" class="raw" readonly></textarea>
+          </div>
+        </section>
+
+        <section id="tab-details" class="tab-panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Details</div>
+              <div class="panel-subtitle">Expand segments and search within elements.</div>
+            </div>
+            <div class="actions">
+              <button class="btn" id="showSegmentsBtn">Show segments</button>
+              <button class="btn" id="expandSegmentsBtn">Expand segments</button>
+              <button class="btn" id="expandElementsBtn">Expand elements</button>
+              <button class="btn" id="collapseAllBtn">Collapse all</button>
+            </div>
+          </div>
+          <div class="search-row">
+            <input id="detailsSearch1" type="text" placeholder="Search 1..." />
+            <input id="detailsSearch2" type="text" placeholder="Search 2..." />
+            <input id="detailsSearch3" type="text" placeholder="Search 3..." />
+          </div>
+          <div id="detailsTree" class="details-tree"></div>
+        </section>
+
+        <section id="tab-compare" class="tab-panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Comparison</div>
+              <div class="panel-subtitle" id="compareSource">No comparison loaded.</div>
+            </div>
+            <div class="actions">
+              <label class="switch">
+                <input type="checkbox" id="compareShowAll" />
+                <span>Show unchanged segments</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="compareCharDiff" />
+                <span>Character-level diff</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="compareForgiving" />
+                <span>Forgiving comparison</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table compare-table" id="diffTable">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Segment</th>
+                  <th id="leftHeader">Left</th>
+                  <th id="rightHeader">Right</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="edifact.js"></script>
+    <script src="analyzer.js"></script>
+  </body>
+</html>
